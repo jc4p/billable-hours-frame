@@ -2,6 +2,10 @@
 
 This is a Next.js project that creates a Farcaster frame for accepting billable hour payments in USDC. It's designed to be easily customizable and deployable.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Getting Started
 
 ### 1. Clone the repository
