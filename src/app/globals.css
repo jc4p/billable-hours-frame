@@ -1,26 +1,169 @@
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Color Palette */
+  --primary-color: #0070f3;
+  --secondary-color: #ff4081;
+  --background-color: #ffffff;
+  --foreground-color: #171717;
+  --header-color: #000000;
+  --text-color: #333333;
+  --button-background-color: var(--primary-color);
+  --button-text-color: #ffffff;
+  --button-hover-background-color: #005bb5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* New theme-specific text colors */
+  --status-text-color: var(--background-color);
+  --template-info-text-color: var(--text-color);
+  --template-info-heading-color: var(--text-color);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  /* Spacing & Layout */
+  --container-width: 960px;
+  --spacing-unit: 1rem;
+
+  /* Borders & Shadows */
+  --border-radius: 0.5rem;
+  --border-color: #eaeaea;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary-color: #50e3c2;
+    --secondary-color: #ff4081;
+    --background-color: #121212;
+    --foreground-color: #ededed;
+    --header-color: #ffffff;
+    --text-color: #cccccc;
+    --button-background-color: var(--primary-color);
+    --button-text-color: #000000;
+    --button-hover-background-color: #3cdca8;
+    --border-color: #333333;
+
+    /* New theme-specific text colors for dark mode */
+    --status-text-color: var(--background-color);
+    --template-info-text-color: var(--text-color);
+    --template-info-heading-color: var(--text-color);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* For absolute positioning of theme-switcher */
+}
+
+/* Removed .header-section as it's no longer needed */
+
+h1 {
+  color: var(--header-color);
+  font-size: calc(var(--font-size-base) * 2);
+  margin-top: calc(var(--spacing-unit) * 2); /* Add top margin to push it down from the top */
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.option-button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-unit);
+  font-size: calc(var(--font-size-base) * 1.25);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: var(--button-hover-background-color);
+}
+
+.status {
+  margin-top: calc(var(--spacing-unit) * 2);
+  padding: var(--spacing-unit);
+  background-color: var(--foreground-color);
+  color: var(--status-text-color);
+  border-radius: var(--border-radius);
+}
+
+.theme-switcher {
+  position: absolute;
+  top: var(--spacing-unit);
+  left: var(--spacing-unit);
+  margin-bottom: 0; /* Remove previous margin */
+  text-align: left; /* Align content to the left */
+}
+
+.theme-switcher label {
+  margin-right: 0.5rem;
+}
+
+.theme-switcher select {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.template-info {
+  background-color: var(--foreground-color);
+  color: var(--template-info-text-color);
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius);
+  margin-top: calc(var(--spacing-unit) * 2); /* Added margin to separate from buttons */
+  text-align: left;
+}
+
+.template-info h2 {
+  font-size: calc(var(--font-size-base) * 1.5);
+  margin-top: 0;
+  margin-bottom: var(--spacing-unit);
+  color: var(--template-info-heading-color);
+}
+
+.template-info ul {
+  list-style: disc;
+  padding-left: calc(var(--spacing-unit) * 1.5);
+  margin-bottom: 0;
+}
+
+.template-info li {
+  margin-bottom: 0.5rem;
+}
+
+.code-highlight {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
 }
